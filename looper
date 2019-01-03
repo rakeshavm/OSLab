@@ -1,0 +1,8 @@
+A=$1
+echo $A
+while [ $A -gt 0 ]
+do 
+	A=`expr $A - 1`
+        echo $A
+done
+
