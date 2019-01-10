@@ -1,0 +1,4 @@
+echo todays date is `date %F`\
+echo time is `date +'%H : %M : %S'`
+whoami
+pwd

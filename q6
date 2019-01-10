@@ -1,0 +1,13 @@
+
+if [ $# -ne 1 ]
+then
+echo not enough arguments
+exit 1
+fi
+
+if [ -e $1 ]
+then 
+  echo file found
+else
+  echo not found
+fi
