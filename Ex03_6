@@ -1,0 +1,18 @@
+if [ $# -gt 1 ]
+then 
+	echo too many arguments  or insufficient arguments
+	exit 1
+fi
+if [ $# -eq 0 ]
+then 
+	echo insufficient arguments
+	exit 1
+fi
+file=$1
+if [ -e $file ]
+then
+	echo "$file is found in the current directory"
+else
+	echo "$file is not found in the current directory"
+fi
+	

@@ -1,0 +1,4 @@
+a=`expr $2 - $1`
+b=`expr $a + 1`
+head -n $2 $3|tail -n $b  
+

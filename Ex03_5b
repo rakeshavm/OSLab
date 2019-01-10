@@ -1,0 +1,21 @@
+a=$1
+i=0
+while [ $i -le $a ]
+do 
+	j=0
+	n1=`expr $a - $i`
+	while [ $j -lt $n1 ]
+	do 
+		echo -n " "
+		j=`expr $j + 1`
+	done
+	j=0
+	while [ $j -lt $i ]
+	do
+		echo -n $i
+		echo -n " "
+		j=`expr $j + 1`
+	done 
+	i=`expr $i + 1`
+	echo 
+done 
