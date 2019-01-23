@@ -10,13 +10,27 @@ int rt[10];
 int wt[10];
 int curr;
 int n;
+int p_done[10];
+
+
 
 void initialise()
 {
  for(int i=0;i<n;i++)
 {
   wt[i]=-1;
+  p_done[i] = 0;
 }
+}
+
+int is_all_process_done()
+{
+  for (int i=0;i<n;i++)
+    {
+      if(p_done[i]==0)
+	return 0;
+    }
+  return 1;
 }
 
 struct node { 
@@ -97,7 +111,7 @@ int main()
    curr = front->data;
    dequeue(&front);
    int pt=0;
-   while(front!=NULL)
+   while(!is_all_process_done())
    {
        pt=time;
        st[curr]=time;
@@ -159,3 +173,4 @@ int main()
     }
         
 }
+
