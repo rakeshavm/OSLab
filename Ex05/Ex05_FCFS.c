@@ -11,6 +11,8 @@ int wt[10];
 int curr;
 int n;
 int p_done[10];
+int pt=0;
+ int w=0,t=0,r=0;
 struct node { 
   int data; 
   int bt; 
@@ -22,6 +24,7 @@ Node *rear=NULL;
 Node* newNode(int d, int p); 
 void dequeue(Node** front);
 void enqueue(Node** front, int d, int p);
+void update(int curr, int time);
 void initialise()
 {
   for(int i=0;i<n;i++)
@@ -49,6 +52,7 @@ Node* add_process_to_queue(int time)
    {
      if(at[i]==time)
        {
+        if(p_done[i]==0)
         enqueue(&front,i,bt[i]);
        }  
    }
@@ -87,7 +91,7 @@ int main()
 
   // Initialising all variables.
   int time=0;
-  int w=0,t=0,r=0;
+ 
   printf("Enter the number of process to be executed: ");
   scanf("%d",&n);
   for(int i=0;i<n;i++)
@@ -103,12 +107,13 @@ int main()
   initialise();
   
   front= add_process_to_queue(time);
+printf("hello\n");
   if (front != NULL)
     {
       curr = front->data; 
       dequeue(&front);
     }
-  int pt=0;
+
   while(!is_all_process_done()||front!=NULL)
     {
 
@@ -124,23 +129,37 @@ int main()
           time++;
           front= add_process_to_queue(time);
           bt[curr]--;
+break;
 	}
 
+      //update(curr, time); 
+      time++;
+      front= add_process_to_queue(time);
       
-      if(bt[curr]-time<bt[front->data])
+    }
+  
+}
+
+
+
+void update(int curr, int time)
+{
+
+
+ if(wt[curr]==-1)
 	{
-          time--;
-	}
-      if(wt[curr]==-1)
-	{
+          wt[curr]=st[curr]-at[curr];
 	  rt[curr]=st[curr]-at[curr];
 	  r+=rt[curr];
 	}
-      if(wt[curr]==-1)
-	wt[curr]=st[curr]-at[curr];
+      
       else
 	wt[curr] = wt[curr]+(pt-ft[curr]);
+
+
       ft[curr]=time;
+
+
       if(bt[curr]==0)
 	{
 	  tat[curr]=ft[curr]-at[curr];
@@ -175,10 +194,7 @@ int main()
 	  curr=front->data;
 	  dequeue(&front);
        }
-      time++;
       
-    }
-  
 }
 
 /* ======================================================== 
@@ -221,4 +237,3 @@ void enqueue(Node** front, int d, int p)
     start->next = temp; 
   } 
 }
-
